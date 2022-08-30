@@ -2,13 +2,13 @@
 
 {% load static %}
 
-{% block title %}Home{% endblock %}
+{% block title %}BookStore{% endblock %}
 
 {% block content %}
 <main>
 
     <section class="py-5 text-center container">
-      <div class="row py-lg-5">
+      <div class="row py-lg-2">
         <div class="col-lg-6 col-md-8 mx-auto">
           <h1 class="h1 fw-bold">Search, Read, Buy, Review </h1>
           <p class="lead text-muted">Something short and leading about the collection below—its contents, the creator, etc. Make it short and sweet, but not too short so folks don’t simply skip over it entirely.</p>
@@ -22,28 +22,32 @@
     <div class="album py-5 bg-light">
       <div class="container">
         
-        <div class="pb-3 h5">All Books</div>
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        <div class="pb-4 h5">All Books</div>
+        <div class="row row-cols-1 row-cols-sm-3 row-cols-md-4 g-4">
 
             {% for product in products %}
 
                 <div class="col">
                     <div class="card shadow-sm">
-                    <img class="card-img-top" alt="Responsive image" src="{{ product.image.url }}" width="50%" height="400vw" object-fit="cover">
+                    <a href="{{ product.get_absolute_url }}""><img class="card-img-top" alt="Responsive image" src="{{ product.image.url }}"></a>
         
                     <div class="card-body">
                         <p class="card-text">
-                            <a class="text-dark text-decoration-none" href="{{ product.get_absolute_url }}">{{ product.title }}</a>
+                            {{ product.title }}
                         </p>
+                        {% if product.price == 0 %}
+                        <p class="card-text"><i>free</i></p>
+                        {% else %}
                         <p class="card-text">
-                            <small class="text-muted">$ {{ product.price }}</small>
+                            <small class="text-muted"><i>$ {{ product.price }}</i></small>
                         </p>
+                        {% endif %}
                         <div class="d-flex justify-content-between align-items-center">
                         <div class="btn-group">
-                            <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                            <button type="button" class="btn btn-sm btn-outline-secondary"><a class="text-dark text-decoration-none" href="{{ product.get_absolute_url }}">View</a></button>
                             <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
                         </div>
-                        <small class="text-muted">9 mins</small>
+                        <small class="text-muted">{{product.created|timesince}}</small>
                         </div>
                     </div>
                     </div>
@@ -53,6 +57,139 @@
 
         </div>
 
+      </div>
+    </div>
+    <div class="container px-4 py-5" id="custom-cards">
+      <h2 class="pb-2 border-bottom">Custom cards</h2>
+  
+      <div class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-5">
+        <div class="col">
+          <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg" style="background-image: url('unsplash-photo-1.jpg');">
+            <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
+              <h2 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">Short title, long jacket</h2>
+              <ul class="d-flex list-unstyled mt-auto">
+                <li class="me-auto">
+                  <img src="https://github.com/twbs.png" alt="Bootstrap" width="32" height="32" class="rounded-circle border border-white">
+                </li>
+                <li class="d-flex align-items-center me-3">
+                  <svg class="bi me-2" width="1em" height="1em"><use xlink:href="#geo-fill"/></svg>
+                  <small>Earth</small>
+                </li>
+                <li class="d-flex align-items-center">
+                  <svg class="bi me-2" width="1em" height="1em"><use xlink:href="#calendar3"/></svg>
+                  <small>3d</small>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+  
+        <div class="col">
+          <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg" style="background-image: url('unsplash-photo-2.jpg');">
+            <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
+              <h2 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">Much longer title that wraps to multiple lines</h2>
+              <ul class="d-flex list-unstyled mt-auto">
+                <li class="me-auto">
+                  <img src="https://github.com/twbs.png" alt="Bootstrap" width="32" height="32" class="rounded-circle border border-white">
+                </li>
+                <li class="d-flex align-items-center me-3">
+                  <svg class="bi me-2" width="1em" height="1em"><use xlink:href="#geo-fill"/></svg>
+                  <small>Pakistan</small>
+                </li>
+                <li class="d-flex align-items-center">
+                  <svg class="bi me-2" width="1em" height="1em"><use xlink:href="#calendar3"/></svg>
+                  <small>4d</small>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+  
+        <div class="col">
+          <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg" style="background-image: url('unsplash-photo-3.jpg');">
+            <div class="d-flex flex-column h-100 p-5 pb-3 text-shadow-1">
+              <h2 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">Another longer title belongs here</h2>
+              <ul class="d-flex list-unstyled mt-auto">
+                <li class="me-auto">
+                  <img src="https://github.com/twbs.png" alt="Bootstrap" width="32" height="32" class="rounded-circle border border-white">
+                </li>
+                <li class="d-flex align-items-center me-3">
+                  <svg class="bi me-2" width="1em" height="1em"><use xlink:href="#geo-fill"/></svg>
+                  <small>California</small>
+                </li>
+                <li class="d-flex align-items-center">
+                  <svg class="bi me-2" width="1em" height="1em"><use xlink:href="#calendar3"/></svg>
+                  <small>5d</small>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <div class="b-example-divider"></div>
+  
+    <div class="container px-4 py-5" id="icon-grid">
+      <h2 class="pb-2 border-bottom">Icon grid</h2>
+  
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4 py-5">
+        <div class="col d-flex align-items-start">
+          <svg class="bi text-muted flex-shrink-0 me-3" width="1.75em" height="1.75em"><use xlink:href="#bootstrap"/></svg>
+          <div>
+            <h4 class="fw-bold mb-0">Featured title</h4>
+            <p>Paragraph of text beneath the heading to explain the heading.</p>
+          </div>
+        </div>
+        <div class="col d-flex align-items-start">
+          <svg class="bi text-muted flex-shrink-0 me-3" width="1.75em" height="1.75em"><use xlink:href="#cpu-fill"/></svg>
+          <div>
+            <h4 class="fw-bold mb-0">Featured title</h4>
+            <p>Paragraph of text beneath the heading to explain the heading.</p>
+          </div>
+        </div>
+        <div class="col d-flex align-items-start">
+          <svg class="bi text-muted flex-shrink-0 me-3" width="1.75em" height="1.75em"><use xlink:href="#calendar3"/></svg>
+          <div>
+            <h4 class="fw-bold mb-0">Featured title</h4>
+            <p>Paragraph of text beneath the heading to explain the heading.</p>
+          </div>
+        </div>
+        <div class="col d-flex align-items-start">
+          <svg class="bi text-muted flex-shrink-0 me-3" width="1.75em" height="1.75em"><use xlink:href="#home"/></svg>
+          <div>
+            <h4 class="fw-bold mb-0">Featured title</h4>
+            <p>Paragraph of text beneath the heading to explain the heading.</p>
+          </div>
+        </div>
+        <div class="col d-flex align-items-start">
+          <svg class="bi text-muted flex-shrink-0 me-3" width="1.75em" height="1.75em"><use xlink:href="#speedometer2"/></svg>
+          <div>
+            <h4 class="fw-bold mb-0">Featured title</h4>
+            <p>Paragraph of text beneath the heading to explain the heading.</p>
+          </div>
+        </div>
+        <div class="col d-flex align-items-start">
+          <svg class="bi text-muted flex-shrink-0 me-3" width="1.75em" height="1.75em"><use xlink:href="#toggles2"/></svg>
+          <div>
+            <h4 class="fw-bold mb-0">Featured title</h4>
+            <p>Paragraph of text beneath the heading to explain the heading.</p>
+          </div>
+        </div>
+        <div class="col d-flex align-items-start">
+          <svg class="bi text-muted flex-shrink-0 me-3" width="1.75em" height="1.75em"><use xlink:href="#geo-fill"/></svg>
+          <div>
+            <h4 class="fw-bold mb-0">Featured title</h4>
+            <p>Paragraph of text beneath the heading to explain the heading.</p>
+          </div>
+        </div>
+        <div class="col d-flex align-items-start">
+          <svg class="bi text-muted flex-shrink-0 me-3" width="1.75em" height="1.75em"><use xlink:href="#tools"/></svg>
+          <div>
+            <h4 class="fw-bold mb-0">Featured title</h4>
+            <p>Paragraph of text beneath the heading to explain the heading.</p>
+          </div>
+        </div>
       </div>
     </div>
   

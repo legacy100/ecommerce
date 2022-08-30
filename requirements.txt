@@ -1,0 +1,16 @@
+asgiref
+autopep8
+coverage
+Django
+flake9-django
+isort
+mccabe
+Pillow
+pycodestyle
+pyflakes
+sqlparse
+testfixtures
+toml
+pytz
+
+# to install the dependencies you can run "pip install -r requirements.txt" 
